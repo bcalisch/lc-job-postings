@@ -1,6 +1,13 @@
 # lightcast job postings app
 
-To run, make sure to fill the `.env` file with the appropriate credentials.  Since this is a public repository, I decided it would probably be best to hide the base URL.  Then run `npm start`.
+To run, copy `example.env` to `.env` file and fill the appropriate credentials.  
+```
+REACT_APP_CLIENT_ID=
+REACT_APP_CLIENT_SECRET=
+REACT_APP_ACCES_TOKEN_URL=
+REACT_APP_BASE_URL=
+```
+Since this is a public repository, I decided it would probably be best to hide the base URL.  Then run `npm start`.
 
 I had 8 hours to learn 2.5 new technologies (React, Observable Plot, and Jest) and implement the functionality in the specs.  I admit that I failed to finish the graph (it looks like my 3 year old brought her artistic talents to the party).  The rankings tables also do not have the stylings finished, though all of the data does display at this point.
 
