@@ -7,8 +7,8 @@ I had 8 hours to learn 2.5 new technologies (React, Observable Plot, and Jest) a
 I attempted to do the entire project using TDD, and was able to make it pretty far down that path.  Around the last hour I realized I had to boogie and abandoned that effort in order to get as much of the brief completed as possible.
 
 ### Left TODO
-* Fix Graph to actually show the data properly
-* Style graph and table according to the mock-up
+* Fix Graph to actually show the data properly (done)
+* Style graph and table according to the mock-up (mostly done)
 * Handle errors more gracefully
 * Store the token in local storage and refresh only when necessary (currently it gets a new token on every refresh).
 * Finish tests
@@ -17,6 +17,8 @@ I attempted to do the entire project using TDD, and was able to make it pretty f
 * make the timeline dynamically choose the last 30 days.
 * Add a search box
 * Add a date picker 
+* LINT!
+
 
 
 ### `npm start`

@@ -19,10 +19,12 @@ function App() {
       const accessToken = await getToken();
 
       if(accessToken) {
-        const {median, totalPostings, totalUniquePostings} = await getTotals(accessToken);
-        const timeSeries = await getTimeSeries(accessToken);
-        const topCompanies = await getRankings(accessToken, 'company_name');
-        const topCities = await getRankings(accessToken, 'city_name');
+        const [{median, totalPostings, totalUniquePostings}, timeSeries, topCompanies, topCities] = await Promise.all([
+           getTotals(accessToken),
+           getTimeSeries(accessToken),
+           getRankings(accessToken, 'company_name'),
+           getRankings(accessToken, 'city_name'),
+        ])
         setTopCompanies(topCompanies);
         setTopCities(topCities);
         setTimeSeries(timeSeries);
