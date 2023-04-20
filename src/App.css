@@ -1,12 +1,27 @@
 .App {
-  text-align: center;
+  font-family: 'Open Sans';
+  text-align: left;
+  margin: 40px;
+  font-size: 14px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header {
+  font-weight: bold;
+  font-size: 40px;
 }
 
+.small{
+  font-size: 20px;
+}
+
+.container {
+  margin-top: 50px;
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -26,6 +41,10 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.break {
+  margin: 60px;
 }
 
 @keyframes App-logo-spin {

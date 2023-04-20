@@ -1,23 +1,61 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
 import './App.css';
+import PostingOverview from './components/PostingOverview.js';
+import PostingsTrend from './components/PostingsTrend.js';
+import TopRankings from './components/TopRankings';
+import { getToken, getTotals, getTimeSeries, getRankings } from './api-clients/jpa.js';
 
 function App() {
+  const [token, setToken] = useState(null);
+  const [postings, setPostings] = useState('0');
+  const [uniquePostings, setUniquePostings] = useState('0');
+  const [medianPostingDuration, setMedian] = useState('0');
+  const [timeSeries, setTimeSeries] = useState([])
+  const [companies, setTopCompanies] = useState([])
+  const [cities, setTopCities] = useState([])
+
+  useEffect(() => {
+    async function getData() {
+      const accessToken = await getToken();
+
+      if(accessToken) {
+        const {median, totalPostings, totalUniquePostings} = await getTotals(accessToken);
+        const timeSeries = await getTimeSeries(accessToken);
+        const topCompanies = await getRankings(accessToken, 'company_name');
+        const topCities = await getRankings(accessToken, 'city_name');
+        setTopCompanies(topCompanies);
+        setTopCities(topCities);
+        setTimeSeries(timeSeries);
+        if(median) {
+          setMedian(median);
+          setPostings(totalPostings);
+          setUniquePostings(totalUniquePostings);
+        }
+        setToken(accessToken);
+      }
+    };
+    try{
+      if(!token) {
+        getData();
+      }
+    } catch(error) {
+      console.log('error: ', error);
+    }
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+        <p className="header">
+          Job Posting Competition: Software Developers
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <PostingOverview 
+          postings={postings} 
+          uniquePostings={uniquePostings}
+          medianPostingDuration={medianPostingDuration} />
+        <div className="break"></div>
+        <PostingsTrend timeSeries={timeSeries} />
+        <TopRankings title="Top Companies Posting" headerName="Company" data={companies}/>
+        <TopRankings title="Top Cities Posting" headerName="City" data={cities}/>
     </div>
   );
 }
