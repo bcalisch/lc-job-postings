@@ -3,9 +3,8 @@ import { useEffect, useRef } from 'react';
 
 export default function PostingsTrend({timeSeries}) {
 const headerRef = useRef();
-  console.log('timeSeries: ', timeSeries);
 useEffect(() => {
-if(timeSeries === undefined) return;
+if(timeSeries === undefined || !timeSeries.length) return;
 const chart = Plot.plot({
       height: 500,
       width: 1500,
