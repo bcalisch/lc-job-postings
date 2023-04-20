@@ -118,7 +118,7 @@ async function getSeriesForYear(accessToken, year) {
   
 return data.unique_postings.map((posting, index) => {
     const day = data.day[index];
-    return {date: moment(day).format('D MMM'), unique_postings: posting, year: moment(day).format('YYYY')};
+    return { date: moment(day).format('M/DD'), unique_postings: posting, year: moment(day).format('YYYY')};
   });
 
 }

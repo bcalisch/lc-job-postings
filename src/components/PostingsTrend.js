@@ -7,12 +7,20 @@ const headerRef = useRef();
 useEffect(() => {
 if(timeSeries === undefined) return;
 const chart = Plot.plot({
+      height: 500,
+      width: 1500,
       x: {
-        ticks: 3,
+        type: "point",
+        padding: '0',
       },
   marks: [
     Plot.line(timeSeries, {x: "date", y: "unique_postings", stroke: "year"}),
+    Plot.dot(timeSeries, {x: "date", y: "unique_postings", fill: "year"}),
   ],
+      color: { legend: true},
+      options: {
+      ticks: 12,
+    }
       })
 
 headerRef.current.append(chart);
